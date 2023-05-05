@@ -1,4 +1,7 @@
 const mergeSort = (a) => {
+  if (!Array.isArray(a) || isNaN(a[0]))
+    return "Invalid Parameter, please pass in an array of numbers";
+
   if (a.length === 1) return a;
 
   let mid = a.length / 2;
@@ -19,4 +22,4 @@ const sort = (l, r) => {
   return ans;
 };
 
-console.log(mergeSort([6, 5, 3, 1, 8, 7, 2, 4]));
+module.exports = mergeSort;

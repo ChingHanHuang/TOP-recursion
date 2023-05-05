@@ -1,4 +1,6 @@
 const fibIterative = (n) => {
+  if (n < 0) return "Invalid parameter";
+
   let a = [0, 1];
   while (n > a.length) {
     a.push(a[a.length - 2] + a[a.length - 1]);
@@ -6,11 +8,15 @@ const fibIterative = (n) => {
   return a;
 };
 
-console.log("fibIterative: " + fibIterative(8));
+const fibRecursive = (n) => {
+  if (n <= 0 || isNaN(n)) return "Invalid parameter";
+  if (n === 1) return [0];
+  if (n === 2) return [0, 1];
 
-const fibRecursive = (n, a = [0, 1]) => {
-  if (a.length >= n) return a;
-  return fibRecursive(n, [...a, a[a.length - 2] + a[a.length - 1]]);
+  return [
+    ...fibRecursive(n - 1),
+    fibRecursive(n - 1)[n - 3] + fibRecursive(n - 1)[n - 2],
+  ];
 };
 
-console.log("fibRecursive: " + fibRecursive(8));
+module.exports = fibRecursive;
